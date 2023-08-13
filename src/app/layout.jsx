@@ -1,5 +1,5 @@
 import Navbar from '@/components/Navbar'
-// import Sidebar from '@/components/Sidebar'
+import Sidebar from '@/components/Sidebar'
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <div className='flex w-full h-full'>
-          {/* <Sidebar /> */}
+          <Sidebar />
           <div className='flex flex-col h-full w-full' style={{
             minHeight: '99vh',
           }}
