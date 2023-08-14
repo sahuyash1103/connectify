@@ -1,4 +1,4 @@
-import UserAboutSection from "@/components/UserAboutSection";
+import UserAboutSection from "@/components/home_page_component/UserAboutSection";
 import UserProfilePicSextion from "@/components/UserProfilePicSection";
 import UserInfoSection from "@/components/UserInfoSection";
 import UserSkillsSection from "@/components/UserSkillsSections";

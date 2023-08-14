@@ -1,6 +1,6 @@
 import Image from "next/image";
 import TitleWithButton from "./TitleWithButton";
-import { aboutTypography } from "@/utils/consts";
+import { typographySubtitle } from "@/utils/consts";
 
 export default function UserProfessionalDetailsSection() {
     return (
@@ -14,7 +14,7 @@ export default function UserProfessionalDetailsSection() {
         >
             <div className="flex flex-col gap-4">
                 <TitleWithButton title="Professional Details" />
-                <span style={{ ...aboutTypography }}>
+                <span style={{ ...typographySubtitle }}>
                     This are the professional details shown to users in the app.
                 </span>
             </div>

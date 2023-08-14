@@ -1,5 +1,5 @@
-import TitleWithButton from "./TitleWithButton";
-import { aboutTypography } from "@/utils/consts";
+import TitleWithButton from "../TitleWithButton";
+import { typographySubtitle } from "@/utils/consts";
 
 export default function UserAboutSection() {
     return (
@@ -12,7 +12,7 @@ export default function UserAboutSection() {
         >
             <TitleWithButton title="About" subtitle="Vishnu" buttonText="Edit" />
             <span
-                style={{...aboutTypography}}
+                style={{...typographySubtitle}}
             >
                 Lorem ipsum dolor sit amet consectetur. Erat auctor a aliquam vel congue luctus. Leo diam cras neque mauris ac arcu elit ipsum dolor sit amet consectetur.
             </span>

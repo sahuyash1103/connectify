@@ -1,5 +1,5 @@
-import Navbar from '@/components/Navbar'
-import Sidebar from '@/components/Sidebar'
+import Navbar from '@/components/navbar/Navbar'
+import Sidebar from '@/components/sidebar/Sidebar'
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -16,7 +16,8 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <div className='flex w-full h-full'>
           <Sidebar />
-          <div className='flex flex-col h-full w-full' style={{
+          <div className='flex flex-col h-full' style={{
+            width: "75vw",
             minHeight: '99vh',
           }}
           >

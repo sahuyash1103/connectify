@@ -12,14 +12,15 @@ const typography = {
 export default function Navbar() {
   return (
     <header
-      className="inline-flex justify-end items-center p-2 w-full"
+      className="inline-flex justify-end items-center p-2"
       style={{
+        width: "75vw",
         background: "#FFF",
         borderBottom: "0.889px solid var(--dividers-and-borders-grey-light, #CECECE)",
       }}>
       <div className="flex h-14 gap-2 m-2">
         <Image
-          className="m-1.5"
+          className="m-1.5 cursor-pointer"
           priority
           width={25}
           height={25}
@@ -30,11 +31,11 @@ export default function Navbar() {
           }}
         />
         <div
-          className="flex justify-center items-center h-14 gap-2 py-1 px-3 mx-2 my-1"
+          className="flex justify-center items-center h-14 gap-2 py-1 px-3 mx-2 my-1 cursor-pointer bg-white hover:bg-gray-400"
           style={{
             border: "1px solid #E8EFF7",
             borderRadius: "8px",
-            background: "rgba(255, 255, 255, 0.50)",
+            // background: "rgba(255, 255, 255, 0.50)",
           }}
         >
           <div
@@ -44,9 +45,6 @@ export default function Navbar() {
               background: "#FFA78D",
             }}
           >
-            {/* <div className="flex-shrink-0 w-9 h-9" style={{
-              background: "url(/assets/imgs/image-11.png), lightgray 50% / cover no-repeat",
-            }} /> */}
             <Image
               className="flex-shrink-0"
               priority

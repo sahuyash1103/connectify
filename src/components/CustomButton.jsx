@@ -7,16 +7,16 @@ const typography = {
     lineHeight: "normal",
 };
 
-export default function CustomButton({ text, style }) {
+export default function CustomButton({ text, style, color }) {
     return (
         <div
-            className="flex justify-center items-center py-1 px-5"
+            className="flex justify-center items-center py-1 px-5 my-2"
             style={{
                 borderRadius: "64px",
-                background: "#F0EFFA",
+                background: color || "#F0EFFA",
             }}
         >
             <span style={{ ...typography, fontSize: "12px", ...style }}>{text}</span>
-        </div>
+        </div >
     );
 }

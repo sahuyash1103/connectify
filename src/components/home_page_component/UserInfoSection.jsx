@@ -1,8 +1,8 @@
 import CustomButton from "./CustomButton";
-import { typography2 } from "@/utils/consts";
+import { typographyTitle } from "@/utils/consts";
 
 const typography = {
-    ...typography2,
+    ...typographyTitle,
     color: "rgba(31, 31, 31, 0.70)",
     fontSize: "12px",
 };

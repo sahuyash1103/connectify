@@ -1,11 +1,11 @@
 import TitleWithButton from "./TitleWithButton";
-import { typography2 } from "@/utils/consts";
+import { typographyTitle } from "@/utils/consts";
 
 const SkillTile = ({ skill }) => {
     return (
         <span
             style={{
-                ...typography2,
+                ...typographyTitle,
                 fontWeight: "500",
                 fontSize: "12px",
             }}

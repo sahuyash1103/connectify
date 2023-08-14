@@ -1,5 +1,5 @@
 import TitleWithButton from "./TitleWithButton";
-import { aboutTypography, typography2 } from "@/utils/consts";
+import { typographySubtitle, typographyTitle } from "@/utils/consts";
 
 const EducationTile = () => {
     return (
@@ -11,20 +11,20 @@ const EducationTile = () => {
             }}
         >
             <span style={{
-                ...aboutTypography,
+                ...typographySubtitle,
                 color: "var(--primary-blue, #413B89)",
                 fontSize: "14px",
                 letterSpacing: "0.118px",
             }}>IIT  HYDERABAD</span>
             <div className="flex justify-between items-center mr-8">
-                <span style={{ ...typography2, fontWeight: 500, fontSize: "14px" }}>
+                <span style={{ ...typographyTitle, fontWeight: 500, fontSize: "14px" }}>
                     (2010-2014)
                 </span>
-                <span style={{ ...typography2, fontWeight: 500, fontSize: "14px" }}>
+                <span style={{ ...typographyTitle, fontWeight: 500, fontSize: "14px" }}>
                     Btech
                 </span>
             </div>
-            <span style={{ ...aboutTypography }}>Lorem ipsum dolor sit amet consectetur. Erat auctor a aliquam vel congue luctus. Leo diam cras neque mauris ac arcu elit ipsum dolor sit amet consectetur.</span>
+            <span style={{ ...typographySubtitle }}>Lorem ipsum dolor sit amet consectetur. Erat auctor a aliquam vel congue luctus. Leo diam cras neque mauris ac arcu elit ipsum dolor sit amet consectetur.</span>
         </div>
     );
 }

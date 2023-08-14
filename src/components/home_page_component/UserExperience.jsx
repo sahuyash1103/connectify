@@ -1,6 +1,6 @@
 import Image from "next/image";
 import TitleWithButton from "./TitleWithButton";
-import { typography2, aboutTypography } from "@/utils/consts";
+import { typographyTitle, typographySubtitle } from "@/utils/consts";
 
 const ExperienceTile = ({ duration, years, workType, componey, role }) => {
     return (
@@ -11,13 +11,13 @@ const ExperienceTile = ({ duration, years, workType, componey, role }) => {
         }}>
             <div className="flex flex-col w-full gap-1">
                 <div className="flex justify-between">
-                    <span style={{ ...typography2 }}>{duration} {years}</span>
-                    <span style={{ ...typography2 }}>{workType}</span>
+                    <span style={{ ...typographyTitle }}>{duration} {years}</span>
+                    <span style={{ ...typographyTitle }}>{workType}</span>
                 </div>
                 <div className="flex justify-between">
                     <span
                         style={{
-                            ...aboutTypography,
+                            ...typographySubtitle,
                             fontSize: "14px",
                         }}
                     >
@@ -25,7 +25,7 @@ const ExperienceTile = ({ duration, years, workType, componey, role }) => {
                     </span>
                     <span
                         style={{
-                            ...aboutTypography,
+                            ...typographySubtitle,
                             fontSize: "14px",
                         }}
                     >
