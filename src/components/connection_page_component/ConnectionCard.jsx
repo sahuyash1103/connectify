@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Ellipse255Icon } from "@/svgs";
 import CustomButton from "../CustomButton";
 import { typographySubtitle, typographyTitle } from "@/utils/consts";
 
@@ -29,21 +29,12 @@ export default function ConnectionCard({ name, job, company, isConnected }) {
                     <CustomButton text="Remove Connection" color="#BAB6EB" /> :
                     <CustomButton text="Connect" color="#BAB6EB" />}
             </div>
-            <Image
-                className="flex-shrink-0"
-                priority
-                width={100}
-                height={100}
-                alt="profile pic"
-                src="/assets/svgs/ellipse-255.svg"
-                style={{
-                    border: "0.889px solid #F8F8FF",
-                    borderRadius: "88.889px",
-                    background: "url(<path-to-image>), lightgray 50% / cover no-repeat, #FFA78D",
-                    boxShadow: "0px 1.8px 3.5px 0px rgba(0, 0, 0, 0.10)",
-                }}
-            />
-
+            <Ellipse255Icon className="flex-shrink-0 w-27 h-27" style={{
+                border: "0.889px solid #F8F8FF",
+                borderRadius: "88.889px",
+                background: "url(<path-to-image>), lightgray 50% / cover no-repeat, #FFA78D",
+                boxShadow: "0px 1.8px 3.5px 0px rgba(0, 0, 0, 0.10)",
+            }} />
         </div>
     );
 }

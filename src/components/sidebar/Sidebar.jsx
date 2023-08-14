@@ -1,7 +1,19 @@
+'use client';
 import SidebarTabs from "./SidebarTabs";
 import { typographySidebar } from "@/utils/consts";
+import { deleteCookie } from 'cookies-next';
+import { useRouter } from "next/navigation";
 
 export default function Sidebar() {
+    const router = useRouter();
+
+    const onLogout = (e) => {
+        e.preventDefault();
+
+        deleteCookie('x-auth-token');
+
+        router.push("/login");
+    }
     return (
         <section className="flex-shrink-0" style={{
             width: "25vw",
@@ -17,7 +29,7 @@ export default function Sidebar() {
                     <div
                         className="flex flex-col justify-between items-end py-5 px-3 m-2"
                         style={{
-                            height: "38vh",
+                            height: "35vh",
                         }}
                     >
                         <div
@@ -42,18 +54,18 @@ export default function Sidebar() {
                         </div>
                         <SidebarTabs />
                     </div>
-                    <div className="cursor-pointer">
-                        <span style={{
+                    <button className="py-1 px-5"
+                        onClick={onLogout}
+                        style={{
                             ...typographySidebar,
                             color: "rgba(34, 34, 34, 0.90)",
                             fontFamily: "Outfit",
                             fontStyle: "normal",
                             fontWeight: "500",
-                            fontSize: "16px",
+                            fontSize: "18px",
                         }}>
-                            Log Out
-                        </span>
-                    </div>
+                        Log Out
+                    </button>
                 </div>
             </div>
         </section>

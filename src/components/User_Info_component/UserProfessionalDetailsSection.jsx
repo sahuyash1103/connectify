@@ -1,5 +1,5 @@
-import Image from "next/image";
-import TitleWithButton from "./TitleWithButton";
+import { BoldDuotoneAstranomyStarsIcon } from "@/svgs";
+import TitleWithButton from "../TitleWithButton";
 import { typographySubtitle } from "@/utils/consts";
 
 export default function UserProfessionalDetailsSection() {
@@ -18,13 +18,7 @@ export default function UserProfessionalDetailsSection() {
                     This are the professional details shown to users in the app.
                 </span>
             </div>
-            <Image
-                priority
-                width={48}
-                height={48}
-                alt=""
-                src="/assets/svgs/bold-duotone-astranomy-stars.svg"
-            />
+            <BoldDuotoneAstranomyStarsIcon className="w-12 h-12"/>
         </section>
     )
 }

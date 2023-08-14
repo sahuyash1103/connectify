@@ -1,5 +1,5 @@
 import Image from "next/image";
-import TitleWithButton from "./TitleWithButton";
+import TitleWithButton from "../TitleWithButton";
 import { typographyTitle, typographySubtitle } from "@/utils/consts";
 
 const ExperienceTile = ({ duration, years, workType, componey, role }) => {

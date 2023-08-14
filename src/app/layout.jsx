@@ -14,17 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className='flex w-full h-full'>
-          <Sidebar />
-          <div className='flex flex-col h-full' style={{
-            width: "75vw",
-            minHeight: '99vh',
-          }}
-          >
-            <Navbar />
-            {children}
-          </div>
-        </div>
+        {children}
       </body>
     </html>
   )

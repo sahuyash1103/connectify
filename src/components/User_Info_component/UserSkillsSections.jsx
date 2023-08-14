@@ -1,4 +1,4 @@
-import TitleWithButton from "./TitleWithButton";
+import TitleWithButton from "../TitleWithButton";
 import { typographyTitle } from "@/utils/consts";
 
 const SkillTile = ({ skill }) => {
