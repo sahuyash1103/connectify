@@ -13,18 +13,18 @@ const EducationTile = () => {
             <span style={{
                 ...typographySubtitle,
                 color: "var(--primary-blue, #413B89)",
-                fontSize: "14px",
+                fontSize: "16px",
                 letterSpacing: "0.118px",
             }}>IIT  HYDERABAD</span>
             <div className="flex justify-between items-center mr-8">
-                <span style={{ ...typographyTitle, fontWeight: 500, fontSize: "14px" }}>
+                <span style={{ ...typographyTitle, fontWeight: 500, fontSize: "16x" }}>
                     (2010-2014)
                 </span>
-                <span style={{ ...typographyTitle, fontWeight: 500, fontSize: "14px" }}>
+                <span style={{ ...typographyTitle, fontWeight: 500, fontSize: "16x" }}>
                     Btech
                 </span>
             </div>
-            <span style={{ ...typographySubtitle }}>Lorem ipsum dolor sit amet consectetur. Erat auctor a aliquam vel congue luctus. Leo diam cras neque mauris ac arcu elit ipsum dolor sit amet consectetur.</span>
+            <span style={{ ...typographySubtitle, fontSize: "16px" }}>Lorem ipsum dolor sit amet consectetur. Erat auctor a aliquam vel congue luctus. Leo diam cras neque mauris ac arcu elit ipsum dolor sit amet consectetur.</span>
         </div>
     );
 }

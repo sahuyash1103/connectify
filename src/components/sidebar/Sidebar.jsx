@@ -1,20 +1,22 @@
 'use client';
+import { UserContext } from "@/context/userContext";
 import SidebarTabs from "./SidebarTabs";
 import { typographySidebar } from "@/utils/consts";
-import { deleteCookie } from 'cookies-next';
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
+import { removeAuthCookie } from "@/utils/cookies";
 
 export default function Sidebar() {
+    const { _, setUserData } = useContext(UserContext);
     const router = useRouter();
 
     const onLogout = (e) => {
         e.preventDefault();
-
-        deleteCookie('x-auth-token');
-        deleteCookie('user');
-
+        removeAuthCookie();
+        setUserData({});
         router.push("/login");
     }
+
     return (
         <section className="flex-shrink-0" style={{
             width: "25vw",

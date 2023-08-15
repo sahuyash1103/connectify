@@ -2,26 +2,29 @@
 import ConnectionCard from "./ConnectionCard";
 import { disconnectToUserPutReq, connectToUserPutReq } from "@/utils/http-service";
 import { useEffect, useState } from "react";
+import { UserContext } from "@/context/userContext";
+import { useContext } from "react";
 
-export default function ConnectionsList({ userConnections, allConnections, setUserConnections, isMy, userData }) {
+export default function ConnectionsList({ userConnections, allConnections, setUserConnections, isMy }) {
+    const { userData, _ } = useContext(UserContext);
     const [myConnections, setMyConnections] = useState([]);
 
     const disconnectToUser = async (email) => {
         const res = await disconnectToUserPutReq(email);
         if (res?.status === 200) {
-            console.log("[disconnected to ]: ", email);
             setUserConnections(res?.data);
         }
-        console.log(res?.data);
+        else
+            console.log("[server]: ", res?.data);
     }
 
     const connectToUser = async (email) => {
         const res = await connectToUserPutReq(email);
         if (res?.status === 200) {
-            console.log("[connected to ]: ", email);
             setUserConnections(res?.data);
         }
-        console.log(res?.data);
+        else
+            console.log("[server]: ", res?.data);
     }
 
     useEffect(() => {
@@ -58,7 +61,7 @@ export default function ConnectionsList({ userConnections, allConnections, setUs
                     })
                     :
                     <span>
-                        You have no connections
+                        No Connections
                     </span>
             }
         </>

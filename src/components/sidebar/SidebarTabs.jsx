@@ -2,7 +2,7 @@
 import { useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { typographySidebar } from "@/utils/consts";
-import { ChevronRight3Icon, NotificationIcon } from "@/svgs";
+import { ChevronRight3Icon } from "@/svgs";
 import Link from "next/link";
 
 
@@ -51,7 +51,7 @@ export default function SidebarTabs() {
                         border: "1px solid transparent",
                         boxShadow: "0px 1.8px 1.8px 0px transparent",
                         ...typographySidebar,
-                        ...(activeTab === "/my-connections" && activeTabStyle)
+                        ...(activeTab === "/connections" && activeTabStyle)
                     }}
                 >
                     My Connections

@@ -9,11 +9,12 @@ const typography = {
     lineHeight: "normal",
 };
 
-export default function TitleWithButton({ title, subtitle, buttonText }) {
+export default function TitleWithButton({ title, subtitle, buttonText, onClick }) {
     return (
         <div className="flex justify-between items-center">
             <span className="flex gap-1" style={{
                 ...typography,
+                fontSize: "18px",
             }}
             >
                 {title}
@@ -21,12 +22,13 @@ export default function TitleWithButton({ title, subtitle, buttonText }) {
                     style={{
                         ...typography,
                         color: "#413B89",
+                        fontSize: "18px",
                     }}
                 >
                     {subtitle}
                 </span>
             </span>
-            {buttonText && <CustomButton text={buttonText} />}
+            {buttonText && <CustomButton text={buttonText} onClick={onClick} />}
         </div>
     );
 }

@@ -7,7 +7,7 @@ export const validateSigupData = async (data) => {
     name: string().min(3).max(50).required(),
     email: string().min(10).max(255).required().email(),
     password: string().min(8).max(255).required(),
-    phone: string().min(10).max(10).required(),
+    phone: number().min(10).max(10).required(),
     about: string().max(255).nullable(),
     skills: array().of(string().min(3).max(10)).nullable(),
     education: array()
@@ -41,3 +41,30 @@ export const validateLoginData = async (data) => {
     return err;
   }
 };
+
+export const validateUserUpdateData = async (dataToUpdate) => {
+  let maxYear = new Date().getFullYear();
+
+  const schema = object({
+    name: string().min(3).max(50),
+    email: string().min(10).max(255).email(),
+    password: string().min(8).max(255),
+    phone: number().min(10).max(10),
+    skills: array().of(string().min(3).max(10)),
+    about: string().max(255),
+    education: array().of(
+      object({
+        institute: string().min(3).max(50),
+        startYear: number().min(1900).max(maxYear),
+        endYear: number().min(1900).max(maxYear),
+        degree: string().min(3).max(50),
+      })
+    ),
+  });
+
+  try {
+    await schema.validate(dataToUpdate);
+  } catch (err) {
+    return err;
+  }
+}

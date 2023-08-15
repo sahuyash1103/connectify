@@ -7,26 +7,68 @@ import UserProfessionalDetailsSection from "@/components/User_Info_component/Use
 import UserCertifications from "@/components/User_Info_component/UserCertifications";
 import UserExperience from "@/components/User_Info_component/UserExperience";
 import UserEducation from "@/components/User_Info_component/UserEducation";
-import ProtectedLayout from "@/components/ProtectedLayout";
+import ProtectedRouteLayout from "@/components/ProtectedRouteLayout";
 import { typographyTitle } from "@/utils/consts";
-import { useEffect, useState } from "react";
-import { getCookie } from "cookies-next";
-import { useRouter } from "next/navigation";
+import { useContext, useEffect, useState } from "react";
+import { updateUserData } from "@/utils/http-service";
+import { validateUserUpdateData } from "@/utils/validators";
+import { UserContext } from "@/context/userContext";
+import { setUser } from "@/utils/cookies";
 
 export default function Home() {
-  const [userData, setUserData] = useState({});
-  const router = useRouter();
+  const { userData, setUserData } = useContext(UserContext);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+  const setPageState = () => {
+    setName(userData?.name);
+    setEmail(userData?.email);
+    setPhone(userData?.phone);
+  }
 
   useEffect(() => {
-    let user = getCookie("user");
-    if (!user) return router.push("/login");
-
-    setUserData(JSON.parse(user));
+    setPageState();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [userData]);
+
+  const handleSave = async (field) => {
+    if (field === 'email') {
+      console.log("email cannot be changed");
+      return;
+    }
+    const getFieldData = (field) => {
+      if (field === "name") return name;
+      if (field === "email") return email;
+      if (field === "phone") return phone;
+    }
+
+    const dataToUpdate = {
+      [field]: getFieldData(field),
+    };
+    const error = await validateUserUpdateData(dataToUpdate);
+    if (error) {
+      setPageState();
+      console.log("[validator]: ", error)
+      return;
+    };
+
+    const res = await updateUserData(dataToUpdate);
+    if (res.status === 200) {
+      setUserData({
+        ...userData,
+        ...dataToUpdate,
+      });
+      setUser(userData);
+    }
+    else {
+      setPageState();
+      console.log("[server]: ", res?.data);
+    };
+  }
 
   return (
-    <ProtectedLayout >
+    <ProtectedRouteLayout >
       <main className="relative flex-shrink-0 w-11/12 p-2 m-2  ">
         <div className="p-2 w-full h-44" style={{
           border: "0.889px solid #FFF",
@@ -53,7 +95,15 @@ export default function Home() {
           }}>
           <div className="flex flex-col justify-between gap-3" style={{ width: "45%" }}>
             <UserProfilePicSection />
-            <UserInfoSection userName={userData?.name} email={userData?.email} phone={userData?.phone} />
+            <UserInfoSection
+              userName={name}
+              email={email}
+              phone={phone}
+              onChangeName={(e) => setName(e.target.value)}
+              onChangeEmail={(e) => setEmail(e.target.value)}
+              onChangePhone={(e) => setPhone(e.target.value)}
+              onSave={handleSave}
+            />
             <UserAboutSection userName={userData?.name} />
             <UserSkillsSection />
           </div>
@@ -65,6 +115,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-    </ProtectedLayout>
+    </ProtectedRouteLayout>
   );
 }

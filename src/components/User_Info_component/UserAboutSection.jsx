@@ -1,8 +1,16 @@
 'use client';
 import TitleWithButton from "../TitleWithButton";
 import { typographySubtitle } from "@/utils/consts";
+import { useState } from "react";
 
-export default function UserAboutSection({ editable, register, style, about, onChangeAbout, userName }) {
+export default function UserAboutSection({ register, style, about, onChangeAbout, userName }) {
+    const [isEditing, setIsEditing] = useState(false);
+
+    const onClickSave = (e) => {
+        e.preventDefault();
+        setIsEditing(false);
+    };
+
     return (
         <section className="flex-shrink-0 flex flex-col p-4 gap-6"
             style={{
@@ -16,14 +24,14 @@ export default function UserAboutSection({ editable, register, style, about, onC
                 register ?
                     <TitleWithButton title="About" subtitle={userName} />
                     :
-                    (editable ?
-                        <TitleWithButton title="About" subtitle={userName} buttonText="Save" />
+                    (isEditing ?
+                        <TitleWithButton title="About" subtitle={userName} buttonText="Save" onClick={onClickSave} />
                         :
-                        <TitleWithButton title="About" subtitle={userName} buttonText="Edit" />
+                        <TitleWithButton title="About" subtitle={userName} buttonText="Edit" onClick={() => setIsEditing(true)} />
                     )
             }
             {
-                editable ?
+                (isEditing || register) ?
                     <textarea
                         className="p-2 border rounded-lg outline-none w-full"
                         value={about}
@@ -40,7 +48,7 @@ export default function UserAboutSection({ editable, register, style, about, onC
                     />
                     :
                     <span
-                        style={{ ...typographySubtitle }}
+                        style={{ ...typographySubtitle, fontSize: "16px" }}
                     >
                         {
                             about ? about :

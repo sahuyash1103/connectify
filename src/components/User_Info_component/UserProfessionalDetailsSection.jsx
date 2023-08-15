@@ -14,7 +14,7 @@ export default function UserProfessionalDetailsSection() {
         >
             <div className="flex flex-col gap-4">
                 <TitleWithButton title="Professional Details" />
-                <span style={{ ...typographySubtitle }}>
+                <span style={{ ...typographySubtitle, fontSize: "16px" }}>
                     This are the professional details shown to users in the app.
                 </span>
             </div>

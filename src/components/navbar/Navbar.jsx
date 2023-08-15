@@ -1,9 +1,8 @@
 'use client';
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import { NotificationIcon, ArowDownIcon } from "@/svgs/index";
-import { getUserData } from "@/utils/http-service";
-import { useRouter } from "next/navigation";
+import { useContext } from "react";
+import { UserContext } from "@/context/userContext";
 
 const typography = {
   color: "#373B5C",
@@ -15,18 +14,7 @@ const typography = {
 };
 
 export default function Navbar() {
-  const [userData, setUserData] = useState({});
-  const router = useRouter();
-
-  useEffect(() => {
-    getUserData().then((res) => {
-      if (res.status === 200)
-        setUserData(res?.data);
-      else
-        router.push("/login");
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { userData, _ } = useContext(UserContext);
 
   return (
     <header

@@ -1,7 +1,7 @@
 import Sidebar from "./sidebar/Sidebar";
 import Navbar from "./navbar/Navbar";
 
-export default function ProtectedLayout({ children }) {
+export default function ProtectedRouteLayout({ children }) {
     return (
         <div className='flex w-full h-full'>
             <Sidebar />

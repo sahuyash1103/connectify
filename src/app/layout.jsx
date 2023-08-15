@@ -1,7 +1,11 @@
-import Navbar from '@/components/navbar/Navbar'
-import Sidebar from '@/components/sidebar/Sidebar'
+'use client'
 import './globals.css'
 import { Inter } from 'next/font/google'
+
+import { useRouter } from "next/navigation";
+import { getUserData } from "@/utils/http-service";
+import { UserContext } from '@/context/userContext';
+import { useState, useEffect } from "react";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -11,10 +15,31 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+  const [userData, setUserData] = useState({});
+  const router = useRouter();
+
+  useEffect(() => {
+    console.log("[userData]: ", userData)
+  }, [userData]);
+
+  useEffect(() => {
+    getUserData().then((res) => {
+      if (res?.status === 200)
+        setUserData(res?.data);
+      else {
+        console.log("[server]: ", res?.data)
+        router.push("/login");
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
+        <UserContext.Provider value={{ userData, setUserData }}>
+          {children}
+        </UserContext.Provider>
       </body>
     </html>
   )

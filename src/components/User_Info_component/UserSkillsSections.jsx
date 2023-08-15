@@ -7,7 +7,7 @@ const SkillTile = ({ skill }) => {
             style={{
                 ...typographyTitle,
                 fontWeight: "500",
-                fontSize: "12px",
+                fontSize: "16px",
             }}
         >
             {skill}
