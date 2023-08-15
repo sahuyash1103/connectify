@@ -7,9 +7,9 @@ import Link from "next/link";
 
 
 export default function SidebarTabs() {
-    const [activeTab, setActiveTab] = useState("/");
-    const router = useRouter();
     const pathname = usePathname();
+    const router = useRouter();
+    const [activeTab, setActiveTab] = useState(pathname);
 
     useEffect(() => {
         setActiveTab(pathname);
@@ -45,7 +45,7 @@ export default function SidebarTabs() {
                     My Profile
                 </Link>
                 <Link
-                    href="/my-connections"
+                    href="/connections"
                     className="flex justify-center items-center py-3 px-16 cursor-pointer"
                     style={{
                         border: "1px solid transparent",

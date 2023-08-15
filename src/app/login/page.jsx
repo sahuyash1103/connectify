@@ -1,51 +1,35 @@
 'use client';
 import Image from "next/image";
 import LoginInputs from "@/components/login/LoginInputs";
-import httpRequest from "@/utils/http_request";
 import { typographyTitle } from "@/utils/consts";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { validateLoginData } from "@/utils/validators";
-import { setCookie } from "cookies-next";
 import Link from "next/link";
+import { verifyUser } from "@/utils/http-service";
 
 export default function Login() {
-    const [email, setEmail] = useState("sahuyash@gmail.com");
-    const [password, setPassword] = useState("1103Yash@connectify");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
     const router = useRouter();
 
     const onLogin = async (e) => {
         e.preventDefault()
-
         const loginData = {
             email,
             password
         }
-
         const error = await validateLoginData(loginData);
         if (error) {
-            console.log(error);
+            console.log("[validator]: ", error);
             return;
         }
-
-        const res = await httpRequest("auth/login/", 'POST', {
-            body: loginData,
-        })
-
-        if (res.status === 200) {
-            const expDate = new Date();
-            expDate.setDate(expDate.getDate() + 1);
-
-            const token = res.headers.get('x-auth-token');
-
-            setCookie('x-auth-token', token, { expires: expDate });
+        const res = await verifyUser(loginData);
+        if (res.status === 200)
             router.push("/");
-        }
-        else {
-            console.log(res.data);
-        }
-
+        else
+            console.log("[server]: ", res.data);
     }
 
     return (

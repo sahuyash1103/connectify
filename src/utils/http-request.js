@@ -6,9 +6,11 @@ export default async function httpRequest(url, methode, { headers, body }) {
         "Content-Type": "application/json",
         ...headers,
       },
-      body: JSON.stringify({
-        ...body,
-      }),
+      body:
+        body &&
+        JSON.stringify({
+          ...body,
+        }),
     });
 
     if (res?.ok) {
@@ -19,6 +21,6 @@ export default async function httpRequest(url, methode, { headers, body }) {
     const text = await res.text();
     return { data: text, status: res.status, headers: res.headers };
   } catch (e) {
-    return e;
+    console.log("[server error]: ", e);
   }
 }

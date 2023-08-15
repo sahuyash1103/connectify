@@ -45,7 +45,7 @@ export default function LoginInputs({ className, style, email, password, remembe
             <div className="flex gap-4 justify-between px-5">
                 <div className="flex gap-3 items-center justify-center p-1">
                     <input type="checkbox" name="rememberme" id="rememberme" onChange={onChangeRememberMe} value={rememberMe} className="w-5 h-5" />
-                    <label for="rememberme" className="flex justify-center text-center items-center" style={{
+                    <label htmlFor="rememberme" className="flex justify-center text-center items-center" style={{
                         ...typographyTitle,
                         fontSize: "18px",
                         fontWeight: 500,

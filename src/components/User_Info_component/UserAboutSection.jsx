@@ -2,7 +2,7 @@
 import TitleWithButton from "../TitleWithButton";
 import { typographySubtitle } from "@/utils/consts";
 
-export default function UserAboutSection({ editable, register, style, about, onChangeAbout }) {
+export default function UserAboutSection({ editable, register, style, about, onChangeAbout, userName }) {
     return (
         <section className="flex-shrink-0 flex flex-col p-4 gap-6"
             style={{
@@ -14,19 +14,18 @@ export default function UserAboutSection({ editable, register, style, about, onC
         >
             {
                 register ?
-                    <TitleWithButton title="About" subtitle="Vishnu" />
+                    <TitleWithButton title="About" subtitle={userName} />
                     :
                     (editable ?
-                        <TitleWithButton title="About" subtitle="Vishnu" buttonText="Save" />
+                        <TitleWithButton title="About" subtitle={userName} buttonText="Save" />
                         :
-                        <TitleWithButton title="About" subtitle="Vishnu" buttonText="Edit" />
+                        <TitleWithButton title="About" subtitle={userName} buttonText="Edit" />
                     )
             }
             {
                 editable ?
                     <textarea
                         className="p-2 border rounded-lg outline-none w-full"
-                        required
                         value={about}
                         onChange={onChangeAbout}
                         type="text"
@@ -43,7 +42,10 @@ export default function UserAboutSection({ editable, register, style, about, onC
                     <span
                         style={{ ...typographySubtitle }}
                     >
-                        Lorem ipsum dolor sit amet consectetur. Erat auctor a aliquam vel congue luctus. Leo diam cras neque mauris ac arcu elit ipsum dolor sit amet consectetur.
+                        {
+                            about ? about :
+                                "Lorem ipsum dolor sit amet consectetur. Erat auctor a aliquam vel congue luctus. Leo diam cras neque mauris ac arcu elit ipsum dolor sit amet consectetur."
+                        }
                     </span>
             }
         </section >

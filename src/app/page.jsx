@@ -1,3 +1,4 @@
+'use client';
 import UserAboutSection from "@/components/User_Info_component/UserAboutSection";
 import UserProfilePicSection from "@/components/User_Info_component/UserProfilePicSection";
 import UserInfoSection from "@/components/User_Info_component/UserInfoSection";
@@ -8,10 +9,24 @@ import UserExperience from "@/components/User_Info_component/UserExperience";
 import UserEducation from "@/components/User_Info_component/UserEducation";
 import ProtectedLayout from "@/components/ProtectedLayout";
 import { typographyTitle } from "@/utils/consts";
+import { useEffect, useState } from "react";
+import { getCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const [userData, setUserData] = useState({});
+  const router = useRouter();
+
+  useEffect(() => {
+    let user = getCookie("user");
+    if (!user) return router.push("/login");
+
+    setUserData(JSON.parse(user));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <ProtectedLayout>
+    <ProtectedLayout >
       <main className="relative flex-shrink-0 w-11/12 p-2 m-2  ">
         <div className="p-2 w-full h-44" style={{
           border: "0.889px solid #FFF",
@@ -38,8 +53,8 @@ export default function Home() {
           }}>
           <div className="flex flex-col justify-between gap-3" style={{ width: "45%" }}>
             <UserProfilePicSection />
-            <UserInfoSection />
-            <UserAboutSection />
+            <UserInfoSection userName={userData?.name} email={userData?.email} phone={userData?.phone} />
+            <UserAboutSection userName={userData?.name} />
             <UserSkillsSection />
           </div>
           <div className="flex flex-col gap-3" style={{ width: "45%" }}>

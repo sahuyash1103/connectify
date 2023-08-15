@@ -2,13 +2,12 @@
 import UserAboutSection from "@/components/User_Info_component/UserAboutSection";
 import UserProfilePicSection from "@/components/User_Info_component/UserProfilePicSection";
 import UserInfoSection from "@/components/User_Info_component/UserInfoSection";
-import httpRequest from "@/utils/http_request";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { typographyTitle } from "@/utils/consts";
 import { validateSigupData } from "@/utils/validators";
-import { setCookie } from "cookies-next";
+import { registerUser } from "@/utils/http-service";
 
 export default function Signup() {
     const [name, setName] = useState("");
@@ -22,38 +21,28 @@ export default function Signup() {
     const router = useRouter();
 
     const onSignup = async (e) => {
-        e.preventDefault()
-
-        const SignupData = {
+        e.preventDefault();
+        const signupData = {
             name,
             email,
             phone,
             password,
-            about,
+            ...(about && { about })
         };
-
-        const error = await validateSigupData(SignupData);
+        const error = await validateSigupData(signupData);
         if (error) {
-            console.log(error);
+            console.log("[validator]: ", error);
             return;
         }
-
-        const res = await httpRequest("auth/signup/", 'POST', {
-            body: SignupData,
-        })
-
-        if (res.status === 200) {
-            const expDate = new Date();
-            expDate.setDate(expDate.getDate() + 1);
-
-            const token = res.headers.get('x-auth-token');
-
-            setCookie('x-auth-token', token, { expires: expDate });
+        if (password !== confirmPassword) {
+            console.log("passwords don't match: ", password, confirmPassword);
+            return;
+        }
+        const res = await registerUser(signupData);
+        if (res.status === 200)
             router.push("/");
-        }
-        else {
-            console.log(res.data);
-        }
+        else
+            console.log("[server]: ", res.data);
     };
 
     return (
@@ -118,7 +107,7 @@ export default function Signup() {
                                 value={rememberMe}
                                 onChange={(e) => setRememberMe(!rememberMe)}
                             />
-                            <label for="rememberme" className="flex justify-center text-center items-center" style={{
+                            <label htmlFor="rememberme" className="flex justify-center text-center items-center" style={{
                                 ...typographyTitle,
                                 fontSize: "18px",
                                 fontWeight: 500,

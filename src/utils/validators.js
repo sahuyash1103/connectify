@@ -8,16 +8,18 @@ export const validateSigupData = async (data) => {
     email: string().min(10).max(255).required().email(),
     password: string().min(8).max(255).required(),
     phone: string().min(10).max(10).required(),
-    about: string().min(3).max(255),
-    skills: array().of(string().min(3).max(10)),
-    education: array().of(
-      object({
-        institute: string().min(3).max(50).required(),
-        startYear: number().min(1900).max(maxYear).required(),
-        endYear: number().min(1900).max(maxYear).required(),
-        degree: string().min(3).max(50).required(),
-      })
-    ),
+    about: string().max(255).nullable(),
+    skills: array().of(string().min(3).max(10)).nullable(),
+    education: array()
+      .of(
+        object({
+          institute: string().min(3).max(50).required(),
+          startYear: number().min(1900).max(maxYear).required(),
+          endYear: number().min(1900).max(maxYear).required(),
+          degree: string().min(3).max(50).required(),
+        })
+      )
+      .nullable(),
   });
 
   try {

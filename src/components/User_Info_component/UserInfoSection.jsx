@@ -1,7 +1,8 @@
 import EditableInfoTile from "../EditableInfoTile";
 
-export default function UserInfoSection({ editable, register, style, name, email, phone, password, confirmPassword, onChangeName, onChangeEmail, onChangePhone, onChangePassword, onChangeConfirmPassword }) {
-
+export default function UserInfoSection({
+    editable, register, style, userName, email, phone, password, confirmPassword, onChangeName, onChangeEmail, onChangePhone, onChangePassword, onChangeConfirmPassword
+}) {
     return (
         <section
             className="flex flex-col flex-shrink-0 p-4 gap-6"
@@ -12,9 +13,9 @@ export default function UserInfoSection({ editable, register, style, name, email
                 boxShadow: "0px 1.8px 1.8px 0px rgba(0, 0, 0, 0.10)",
             }}
         >
-            <EditableInfoTile title="Your Name" type="text" field="Vishnu Swaroop" editable={editable} register={register} value={name} onChangeValue={onChangeName} />
-            <EditableInfoTile title="Email" type="email" field="vishnu@oruphones.com" editable={editable} register={register} value={email} onChangeValue={onChangeEmail} />
-            <EditableInfoTile title="Phone Number" type="text" field="+91 49652845732" editable={editable} register={register} value={phone} onChangeValue={onChangePhone} />
+            <EditableInfoTile title="Your Name" type="text" field={userName} editable={editable} register={register} value={userName} onChangeValue={onChangeName} />
+            <EditableInfoTile title="Email" type="email" field={email} editable={editable} register={register} value={email} onChangeValue={onChangeEmail} />
+            <EditableInfoTile title="Phone Number" type="text" field={'+91 ' + phone} editable={editable} register={register} value={phone} onChangeValue={onChangePhone} />
             {
                 register &&
                 <>

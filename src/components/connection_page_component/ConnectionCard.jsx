@@ -2,11 +2,11 @@ import { Ellipse255Icon } from "@/svgs";
 import CustomButton from "../CustomButton";
 import { typographySubtitle, typographyTitle } from "@/utils/consts";
 
-export default function ConnectionCard({ name, job, company, isConnected }) {
+export default function ConnectionCard({ name, job, company, isConnected, onClick }) {
     return (
-        <div className="flex flex-shrink-0 gap-3 p-2 justify-center items-center"
+        <div className="flex flex-shrink-0 gap-3 p-2 justify-between px-6 items-center"
             style={{
-                width: "300px",
+                width: "350px",
                 height: "150px",
                 border: "0.889px solid var(--input-box-stroke-thin, rgba(0, 0, 0, 0.15))",
                 borderRadius: "4.444px",
@@ -26,8 +26,8 @@ export default function ConnectionCard({ name, job, company, isConnected }) {
                         fontSize: "12px"
                     }}>@ {company}</span>
                 </div>{isConnected ?
-                    <CustomButton text="Remove Connection" color="#BAB6EB" /> :
-                    <CustomButton text="Connect" color="#BAB6EB" />}
+                    <CustomButton text="Remove Connection" color="#BAB6EB" onClick={onClick}/> :
+                    <CustomButton text="Connect" color="#BAB6EB" onClick={onClick}/>}
             </div>
             <Ellipse255Icon className="flex-shrink-0 w-27 h-27" style={{
                 border: "0.889px solid #F8F8FF",

@@ -36,10 +36,10 @@ const ExperienceTile = ({ duration, years, workType, componey, role }) => {
             <Image
                 className="flex-shrink-0"
                 priority
-                width={47}
-                height={23}
+                width={83}
+                height={38}
                 alt=""
-                src="/assets/imgs/image-13.png"
+                src="/assets/imgs/image-13s.png"
                 style={{
                     background: "lightgray 50% / cover no-repeat",
                 }}

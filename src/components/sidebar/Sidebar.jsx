@@ -11,6 +11,7 @@ export default function Sidebar() {
         e.preventDefault();
 
         deleteCookie('x-auth-token');
+        deleteCookie('user');
 
         router.push("/login");
     }
