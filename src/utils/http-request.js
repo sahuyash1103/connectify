@@ -16,11 +16,11 @@ export default async function httpRequest(path, methode, { headers, body }) {
 
     if (res?.ok) {
       const json = await res.json();
-      return { data: json, status: res.status, headers: res.headers };
+      return { data: json, status: res?.status, headers: res?.headers };
     }
 
     const text = await res.text();
-    return { data: text, status: res.status, headers: res.headers };
+    return { data: text, status: res?.status, headers: res?.headers };
   } catch (e) {
     console.log("[server error]: ", e);
   }

@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { validateSigupData } from "@/utils/validators";
 import { registerUser } from "@/utils/http-service";
 import { UserContext } from "@/context/userContext";
+import Head from "next/head";
 
 export default function Signup() {
     const { _, setUserData } = useContext(UserContext);
@@ -41,7 +42,7 @@ export default function Signup() {
             return;
         }
         const res = await registerUser(signupData);
-        if (res.status === 200) {
+        if (res?.status === 200) {
             setUserData(res?.data);
             router.push("/");
         }
@@ -51,6 +52,9 @@ export default function Signup() {
 
     return (
         <AuthRouteLayout title="SIGNUP">
+            <Head>
+                <title>Connectify | Signup</title>
+            </Head>
             <div className="flex flex-col justify-center items-center gap-3 px-4 py-5 h-full w-45/  max-[1500px]:w-50/ max-laptop:p-4 max-laptop:gap-3 max-[900px]:gap-2 max-[500px]:gap-1 max-[900px]:w-90/  max-[500px]:w-full max-[500px]:p-0 max-[900px]:p-2">
                 <UserProfilePicSection editable register className="!w-90/" />
                 <UserInfoSection

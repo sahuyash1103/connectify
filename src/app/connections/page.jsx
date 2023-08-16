@@ -13,7 +13,7 @@ export default function Connections() {
 
     useEffect(() => {
         getUserConnectionsData().then((res) => {
-            if (res.status === 200)
+            if (res?.status === 200)
                 setUserConnections(res?.data);
             else {
                 console.log("[server]: ", res?.data)
@@ -21,7 +21,7 @@ export default function Connections() {
             }
         });
         getAllConnectionsData().then((res) => {
-            if (res.status === 200)
+            if (res?.status === 200)
                 setAllConnections(res?.data);
             else {
                 console.log("[server]: ", res?.data)

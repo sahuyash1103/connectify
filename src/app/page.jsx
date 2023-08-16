@@ -53,7 +53,7 @@ export default function Home() {
     };
 
     const res = await updateUserData(dataToUpdate);
-    if (res.status === 200) {
+    if (res?.status === 200) {
       setUserData({
         ...userData,
         ...dataToUpdate,
@@ -68,6 +68,7 @@ export default function Home() {
 
   return (
     <ProtectedRouteLayout >
+     
       <main className="relative flex-shrink-0 w-95/ p-2 m-2 max-[1900px]:w-full">
         <div className="p-2 w-full h-44 border border-solid border-white rounded-lg bg-1E2875">
           <span className="m-2 p-2 text-FFF text-18 font-500 font-Outfit leading-normal" >

@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { validateLoginData } from "@/utils/validators";
 import { verifyUser } from "@/utils/http-service";
 import { UserContext } from "@/context/userContext";
+import Head from "next/head";
 
 export default function Login() {
     const { _, setUserData } = useContext(UserContext);
@@ -29,7 +30,7 @@ export default function Login() {
             return;
         }
         const res = await verifyUser(loginData);
-        if (res.status === 200) {
+        if (res?.status === 200) {
             setUserData(res?.data);
             router.push("/");
         }
@@ -39,6 +40,9 @@ export default function Login() {
 
     return (
         <AuthRouteLayout title="LOGIN">
+            <Head>
+                <title>Connectify | Login</title>
+            </Head>
             <div className="flex flex-col justify-center items-center gap-5 px-4 py-5 h-full w-45/ max-[1500px]:w-50/ max-[900px]:hidden">
                 <Image
                     width={600}
