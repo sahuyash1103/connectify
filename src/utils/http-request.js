@@ -1,6 +1,7 @@
-export default async function httpRequest(url, methode, { headers, body }) {
+const apiURL = process.env.NEXT_PUBLIC_CONNECTIFY_API_URL;
+export default async function httpRequest(path, methode, { headers, body }) {
   try {
-    const res = await fetch("http://localhost:3001/api/" + url, {
+    const res = await fetch(`${apiURL}${path}`, {
       method: methode,
       headers: {
         "Content-Type": "application/json",
