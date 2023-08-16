@@ -4,14 +4,17 @@ import { NotificationIcon, ArowDownIcon, MenuIcon } from "@/svgs/index";
 import { useContext } from "react";
 import { UserContext } from "@/context/userContext";
 
-export default function Navbar() {
+export default function Navbar({ setOpenSidebar }) {
   const { userData, _ } = useContext(UserContext);
 
   return (
     <header
       className="inline-flex justify-end items-center px-2 w-full h-24 bg-FFF border-b border-solid border-CECECE max-desktop:h-[60px] max-laptop:justify-between"
     >
-      <MenuIcon className="hidden w-[38px] h-[38px] mx-5 cursor-pointer max-laptop:flex" />
+      <MenuIcon
+        className="hidden w-[38px] h-[38px] mx-5 cursor-pointer max-laptop:flex"
+        onClick={() => setOpenSidebar(true)}
+      />
       <div className="flex justify-center items-center h-14 gap-2 mx-2 max-desktop:h-8 max-laptop:mr-10">
         <NotificationIcon className="m-1.5 cursor-pointer w-[26px] h-[25px] max-desktop:h-[18px] max-desktop:w-[20px]" />
         <div

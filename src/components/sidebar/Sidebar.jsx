@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { removeAuthCookie } from "@/utils/cookies";
 
-export default function Sidebar() {
+export default function Sidebar({ openSidebar, setOpenSidebar }) {
     const { _, setUserData } = useContext(UserContext);
     const router = useRouter();
 
@@ -17,7 +17,7 @@ export default function Sidebar() {
     }
 
     return (
-        <section className="fixed z-50 flex-shrink-0 w-[25vw] h-[99vh] duration-[500ms] max-laptop:hidden max-[1900px]:w-[20vw] ">
+        <section className={`fixed z-50 flex-shrink-0 w-[25vw] h-[99vh] duration-[500ms] max-[1900px]:w-[20vw] max-laptop:w-[250px] ${openSidebar || 'max-laptop:-translate-x-full'}`}>
             <div className="flex-shrink-0 w-95/ h-[99vh] bg-FFF shadow-4">
                 <div className="flex flex-col justify-between gap-10 items-center pb-10 m-1 p-2 h-full">
                     <div
@@ -31,7 +31,7 @@ export default function Sidebar() {
                                 Dashboard
                             </span>
                         </div>
-                        <SidebarTabs />
+                        <SidebarTabs setOpenSidebar={setOpenSidebar} />
                     </div>
                     <button
                         className="py-1 px-5 text-34-34-34 text-18 font-500 font-Outfit leading-normal not-italic"
