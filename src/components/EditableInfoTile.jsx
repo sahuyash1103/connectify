@@ -32,7 +32,7 @@ export default function EditableInfoTile({
             <div className="flex justify-between items-center">
                 {
                     (isEditing || register) ?
-                        <div className="flex justify-start items-center gap-1 w-80/">
+                        <div className={`flex justify-start items-center gap-1 ${type === 'password' ? 'w-90/' : 'w-full'}`}>
                             <input
                                 className={
                                     `p-2 border rounded-lg outline-none w-85/ bg-F0EFFA text-1E2875 text-16 tracking-[0.3px] font-500 font-Outfit leading-normal not-italic lining-nums proportional-nums ${fieldClass}`
@@ -46,7 +46,7 @@ export default function EditableInfoTile({
                             {
                                 (type === "password") &&
                                 <div
-                                    className="flex justify-center items-center border rounded-lg py-2 cursor-pointer bg-F0EFFA w-10/"
+                                    className="flex justify-center items-center border rounded-lg py-2 cursor-pointer bg-F0EFFA w-15/"
                                     onClick={() => setShowPassword(!showPassword)}
                                 >
                                     {

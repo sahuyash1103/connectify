@@ -11,7 +11,7 @@ export default function UserAboutSection({ register, className, about, onChangeA
     };
 
     return (
-        <section className={`flex-shrink-0 flex flex-col p-4 gap-6 border border-solid border-0-0-0 rounded-[5px] shadow-2 ${className} max-desktop:p-3 max-desktop:gap-2`}
+        <section className={`flex-shrink-0 flex flex-col p-4 gap-6 border border-solid border-0-0-0 rounded-[5px] shadow-2 ${className} max-desktop:p-3 max-[900px]:p-1 max-desktop:gap-2`}
         >
             {
                 register ?

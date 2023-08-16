@@ -8,6 +8,8 @@ export default function UserInfoSection({
             className={`flex flex-col flex-shrink-0 p-4 gap-6 rounded-[5px] shadow-2 border border-solid border-0-0-0 ${className} max-desktop:p-3 max-desktop:gap-2`}
         >
             <EditableInfoTile
+                titleClass="text-20 max-laptop:text-16 max-[500px]:text-14"
+                fieldClass="text-20 max-laptop:text-16 max-[500px]:text-12"
                 title="Your Name"
                 type="text"
                 field={userName}
@@ -17,6 +19,8 @@ export default function UserInfoSection({
                 onSave={() => onSave('name')} />
 
             <EditableInfoTile
+                titleClass="text-20 max-laptop:text-16 max-[500px]:text-14"
+                fieldClass="text-20 max-laptop:text-16 max-[500px]:text-12"
                 title="Email"
                 type="email"
                 field={email}
@@ -26,6 +30,8 @@ export default function UserInfoSection({
                 onSave={() => onSave('email')} />
 
             <EditableInfoTile
+                titleClass="text-20 max-laptop:text-16 max-[500px]:text-14"
+                fieldClass="text-20 max-laptop:text-16 max-[500px]:text-12"
                 title="Phone Number"
                 type="text"
                 field={'+91 ' + phone}

@@ -39,7 +39,7 @@ export default function Login() {
 
     return (
         <AuthRouteLayout title="LOGIN">
-            <div className="flex flex-col justify-center items-center gap-5 px-4 py-5 h-full w-45/">
+            <div className="flex flex-col justify-center items-center gap-5 px-4 py-5 h-full w-45/ max-[1500px]:w-50/ max-[900px]:hidden">
                 <Image
                     width={600}
                     height={600}
@@ -47,7 +47,7 @@ export default function Login() {
                     src="/assets/imgs/oru-phones.png"
                 />
             </div>
-            <div className="flex flex-col justify-center items-center gap-5 px-4 py-5 h-full w-45/">
+            <div className="flex flex-col justify-center items-center gap-5 px-4 py-5 h-full w-45/ max-[1500px]:w-50/ max-laptop:p-4 max-laptop:gap-3 max-[900px]:gap-2 max-[500px]:gap-1 max-[900px]:w-90/  max-[500px]:w-full max-[500px]:p-0 max-[900px]:p-2">
                 <LoginInputs
                     className="p-5 w-90/"
                     email={email}
@@ -59,17 +59,15 @@ export default function Login() {
                 />
                 <button
                     type="submit"
-                    className="py-3 rounded-lg w-96 m-4 text-1E2875 text-24 font-600 font-Outfit leading-normal not-italic bg-F0EFFA"
+                    className="py-3 rounded-lg w-96 m-4 text-1E2875 text-24 font-600 font-Outfit leading-normal not-italic bg-F0EFFA max-laptop:w-[300px] max-laptop:text-20 max-laptop:m-2 max-[500px]:w-[200px]"
                     onClick={onLogin}
                 >
                     Login
                 </button>
-                <div className="flex gap-3">
+                <div className="flex gap-3 text-center items-center hover:underline text-34-34-34 text-18 font-500 font-Outfit leading-normal not-italic max-[900px]:text-14">
                     {"Don't have account? "}
-
                     <Link
                         href="/signup"
-                        className="flex justify-center text-center items-center hover:underline text-34-34-34 text-18 font-500 font-Outfit leading-normal not-italic"
                     >
                         Signup
                     </Link>
