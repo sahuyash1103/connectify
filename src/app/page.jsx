@@ -8,7 +8,6 @@ import UserCertifications from "@/components/User_Info_component/UserCertificati
 import UserExperience from "@/components/User_Info_component/UserExperience";
 import UserEducation from "@/components/User_Info_component/UserEducation";
 import ProtectedRouteLayout from "@/components/ProtectedRouteLayout";
-import { typographyTitle } from "@/utils/consts";
 import { useContext, useEffect, useState } from "react";
 import { updateUserData } from "@/utils/http-service";
 import { validateUserUpdateData } from "@/utils/validators";
@@ -69,31 +68,16 @@ export default function Home() {
 
   return (
     <ProtectedRouteLayout >
-      <main className="relative flex-shrink-0 w-11/12 p-2 m-2  ">
-        <div className="p-2 w-full h-44" style={{
-          border: "0.889px solid #FFF",
-          borderRadius: "8.889px",
-          background: "#1E2875",
-        }}>
-          <span className="m-2 p-2" style={{
-            ...typographyTitle,
-            color: "#FFF",
-            fontSize: "18px",
-            fontWeight: 500,
-          }}>MY PROFILE</span>
+      <main className="relative flex-shrink-0 w-95/ p-2 m-2 max-[1900px]:w-full">
+        <div className="p-2 w-full h-44 border border-solid border-white rounded-lg bg-1E2875">
+          <span className="m-2 p-2 text-FFF text-18 font-500 font-Outfit leading-normal" >
+            MY PROFILE
+          </span>
         </div>
         <div
-          className="absolute flex justify-center items-start flex-shrink-0 z-10 p-4 gap-10"
-          style={{
-            width: "85%",
-            top: "50%",
-            left: "7%",
-            border: "1px solid #EBEBEE",
-            borderRadius: "9px",
-            boxShadow: "0px 3.555555582046509px 5.333333492279053px 0px rgba(0, 0, 0, 0.15)",
-            background: "#FFF",
-          }}>
-          <div className="flex flex-col justify-between gap-3" style={{ width: "45%" }}>
+          className="absolute flex justify-center items-start flex-shrink-0 z-10 p-4 gap-10 border border-solid w-80/ top-2/4 left-[9%] border-EBEBEE rounded-[9px] bg-white shadow-1 max-[1500px]:w-90/ max-[1500px]:left-[5%] max-[1900px]:gap-5 max-[900px]:flex-col max-[900px]:items-center"
+        >
+          <div className="flex flex-col justify-between gap-3 w-45/ max-[1500px]:w-[48%] max-[900px]:w-80/ max-[500px]:w-95/ ">
             <UserProfilePicSection />
             <UserInfoSection
               userName={name}
@@ -107,7 +91,7 @@ export default function Home() {
             <UserAboutSection userName={userData?.name} />
             <UserSkillsSection />
           </div>
-          <div className="flex flex-col gap-3" style={{ width: "45%" }}>
+          <div className="flex flex-col gap-3 w-45/ max-[1500px]:w-[48%] max-[900px]:w-80/ max-[500px]:w-95/">
             <UserProfessionalDetailsSection />
             <UserCertifications />
             <UserExperience />

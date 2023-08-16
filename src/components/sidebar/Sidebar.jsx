@@ -1,7 +1,6 @@
 'use client';
 import { UserContext } from "@/context/userContext";
 import SidebarTabs from "./SidebarTabs";
-import { typographySidebar } from "@/utils/consts";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { removeAuthCookie } from "@/utils/cookies";
@@ -18,55 +17,26 @@ export default function Sidebar() {
     }
 
     return (
-        <section className="flex-shrink-0" style={{
-            width: "25vw",
-            hight: "99vh",
-        }}>
-            <div className="flex-shrink-0" style={{
-                width: "95%",
-                height: "99vh",
-                background: "#FFF",
-                boxShadow: "0px 8.9px 53.3px 0px rgba(226, 236, 249, 0.50)",
-            }}>
+        <section className="fixed z-50 flex-shrink-0 w-[25vw] h-[99vh] duration-[500ms] max-laptop:hidden max-[1900px]:w-[20vw] ">
+            <div className="flex-shrink-0 w-95/ h-[99vh] bg-FFF shadow-4">
                 <div className="flex flex-col justify-between gap-10 items-center pb-10 m-1 p-2 h-full">
                     <div
-                        className="flex flex-col justify-between items-end py-5 px-3 m-2"
-                        style={{
-                            height: "35vh",
-                        }}
+                        className="flex flex-col justify-between items-end py-5 px-3 m-2 h-[35vh] max-[1900px]:px-0 max-[1900px]:mx-1"
                     >
                         <div
-                            className="inline-flex justify-end items-end px-8 py-2 gap-12 m-2"
-                            style={{
-                                border: "0.889px solid var(--input-box-stroke-thin, rgba(0, 0, 0, 0.15))",
-                                borderRadius: "8.889px",
-                                boxShadow: "0px 1.8px 1.8px 0px rgba(0, 0, 0, 0.10)",
-                            }}
+                            className="inline-flex justify-end items-end px-8 py-2 m-2 border border-solid border-0-0-0 rounded-[9px] max-[1900px]:px-5 max-[1900px]:mx-10 max-desktop:m-1"
                         >
-                            <span style={{
-                                ...typographySidebar,
-                                color: "rgba(34, 34, 34, 0.90)",
-                                fontFamily: "Outfit",
-                                fontStyle: "normal",
-                                fontWeight: 500,
-                                fontSize: "24px",
-                            }}
+                            <span className="text-34-34-34 text-24 font-500 font-Outfit leading-normal not-italic max-[1900px]:text-20"
                             >
                                 Dashboard
                             </span>
                         </div>
                         <SidebarTabs />
                     </div>
-                    <button className="py-1 px-5"
+                    <button
+                        className="py-1 px-5 text-34-34-34 text-18 font-500 font-Outfit leading-normal not-italic"
                         onClick={onLogout}
-                        style={{
-                            ...typographySidebar,
-                            color: "rgba(34, 34, 34, 0.90)",
-                            fontFamily: "Outfit",
-                            fontStyle: "normal",
-                            fontWeight: "500",
-                            fontSize: "18px",
-                        }}>
+                    >
                         Log Out
                     </button>
                 </div>

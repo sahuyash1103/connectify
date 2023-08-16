@@ -1,58 +1,34 @@
 'use client';
-import { useRouter, usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
-import { typographySidebar } from "@/utils/consts";
-import { ChevronRight3Icon } from "@/svgs";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
+import { ChevronRight3Icon } from "@/svgs";
 
 
 export default function SidebarTabs() {
     const pathname = usePathname();
-    const router = useRouter();
     const [activeTab, setActiveTab] = useState(pathname);
 
     useEffect(() => {
         setActiveTab(pathname);
     }, [pathname]);
 
-    const activeTabStyle = {
-        borderRadius: "8.889px",
-        border: "1px solid #413B89",
-        boxShadow: "0px 1.8px 1.8px 0px rgba(0, 0, 0, 0.10)",
-    };
-
-    const navigateTo = (to) => {
-        router.push(to);
-    }
-
     return (
-        <div className="flex flex-row justify-start items-start m-2 p-5 gap-2">
-            <div className="flex flex-col justify-evenly items-center h-full gap-5">
-                <ChevronRight3Icon className="fill-transparent w-4 h-4 mx-3 my-4" />
-                <ChevronRight3Icon className="fill-transparent w-4 h-4 mx-3 my-4" />
+        <div className="flex flex-row justify-start items-start m-2 p-5 gap-0 max-[1900px]:p-3 max-[1900px]:m-1 ">
+            <div className="flex flex-col justify-between items-center h-full gap-5">
+                <ChevronRight3Icon className="fill-transparent w-4 h-4 mx-3 my-4 max-[1900px]:mx-1 max-[1900px]:my-3" />
+                <ChevronRight3Icon className="fill-transparent w-4 h-4 mx-3 my-4 max-[1900px]:mx-1 max-[1900px]:my-3" />
             </div>
-            <div className="flex flex-col justify-center items-center gap-5">
+            <div className="flex flex-col justify-between items-center gap-5">
                 <Link
                     href="/"
-                    className="flex justify-center items-center py-3 px-16 cursor-pointer"
-                    style={{
-                        border: "1px solid transparent",
-                        boxShadow: "0px 1.8px 1.8px 0px transparent",
-                        ...typographySidebar,
-                        ...(activeTab === "/" && activeTabStyle)
-                    }}
+                    className={`flex justify-center items-center py-3 px-16 cursor-pointer border border-solid border-transparent shadow-5 text-1A1558 text-20 font-400 font-Palatino-Linotype leading-normal not-italic rounded-[9px] max-[1900px]:px-8 max-[1900px]:py-2 max-[1900px]:text-18 max-desktop:text-16 max-desktop::py-[5px] max-desktop:px-6: ${activeTab === "/" && '!border-413B89 !shadow-2'}`}
                 >
                     My Profile
                 </Link>
                 <Link
                     href="/connections"
-                    className="flex justify-center items-center py-3 px-16 cursor-pointer"
-                    style={{
-                        border: "1px solid transparent",
-                        boxShadow: "0px 1.8px 1.8px 0px transparent",
-                        ...typographySidebar,
-                        ...(activeTab === "/connections" && activeTabStyle)
-                    }}
+                    className={`flex justify-center items-center py-3 px-16 cursor-pointer border border-solid border-transparent shadow-5 text-1A1558 text-20 font-400 font-Palatino-Linotype leading-normal not-italic rounded-[9px] max-[1900px]:px-8 max-[1900px]:py-2 max-[1900px]:text-18 max-desktop:text-16 max-desktop::py-[5px] max-desktop:px-6: ${activeTab === "/connections" && '!border-413B89 !shadow-2'}`}
                 >
                     My Connections
                 </Link>

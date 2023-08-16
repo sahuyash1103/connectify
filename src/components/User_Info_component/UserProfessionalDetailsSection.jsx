@@ -1,24 +1,20 @@
 import { BoldDuotoneAstranomyStarsIcon } from "@/svgs";
 import TitleWithButton from "../TitleWithButton";
-import { typographySubtitle } from "@/utils/consts";
 
 export default function UserProfessionalDetailsSection() {
     return (
         <section
-            className="flex-shrink-0 flex justify-evenly p-4 mt-4"
-            style={{
-                border: "0.889px solid var(--input-box-stroke-thin, rgba(0, 0, 0, 0.15))",
-                borderRadius: "8.889px",
-                boxShadow: "0px 1.8px 1.8px 0px rgba(0, 0, 0, 0.10)",
-            }}
+            className="flex-shrink-0 flex justify-evenly items-center p-4 mt-4 gap-4 border border-solid border-0-0-0 rounded-[9px] shadow-2 max-desktop:p-2 "
         >
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 w-70/">
                 <TitleWithButton title="Professional Details" />
-                <span style={{ ...typographySubtitle, fontSize: "16px" }}>
+                <span
+                    className="text-73-69-79 text-justify text-16 font-500 font-Outfit leading-normal not-italic lining-nums proportional-nums"
+                >
                     This are the professional details shown to users in the app.
                 </span>
             </div>
-            <BoldDuotoneAstranomyStarsIcon className="w-12 h-12"/>
+            <BoldDuotoneAstranomyStarsIcon className="w-12 h-12" />
         </section>
     )
 }

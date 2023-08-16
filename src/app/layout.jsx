@@ -2,7 +2,7 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { getUserData } from "@/utils/http-service";
 import { UserContext } from '@/context/userContext';
 import { useState, useEffect } from "react";
@@ -16,6 +16,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   const [userData, setUserData] = useState({});
+  const pathname = usePathname();
   const router = useRouter();
 
   useEffect(() => {
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
         setUserData(res?.data);
       else {
         console.log("[server]: ", res?.data)
+        if (pathname === "/login" || pathname === "/signup") return;
         router.push("/login");
       }
     });

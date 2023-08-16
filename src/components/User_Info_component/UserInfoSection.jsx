@@ -1,17 +1,11 @@
 import EditableInfoTile from "../EditableInfoTile";
 
 export default function UserInfoSection({
-    register, style, userName, email, phone, password, confirmPassword, onChangeName, onChangeEmail, onChangePhone, onChangePassword, onChangeConfirmPassword, onSave
+    register, className, userName, email, phone, password, confirmPassword, onChangeName, onChangeEmail, onChangePhone, onChangePassword, onChangeConfirmPassword, onSave
 }) {
     return (
         <section
-            className="flex flex-col flex-shrink-0 p-4 gap-6"
-            style={{
-                ...style,
-                borderRadius: "5px",
-                border: "0.889px solid var(--input-box-stroke-thin, rgba(0, 0, 0, 0.15))",
-                boxShadow: "0px 1.8px 1.8px 0px rgba(0, 0, 0, 0.10)",
-            }}
+            className={`flex flex-col flex-shrink-0 p-4 gap-6 rounded-[5px] shadow-2 border border-solid border-0-0-0 ${className} max-desktop:p-3 max-desktop:gap-2`}
         >
             <EditableInfoTile
                 title="Your Name"

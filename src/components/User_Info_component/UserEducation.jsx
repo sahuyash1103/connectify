@@ -1,37 +1,37 @@
 import TitleWithButton from "../TitleWithButton";
-import { typographySubtitle, typographyTitle } from "@/utils/consts";
 
 const EducationTile = () => {
     return (
-        <div className="flex-shrink-0 flex flex-col p-5 gap-2"
-            style={{
-                border: "0.844px solid var(--dividers-and-borders-grey-light, #CECECE)",
-                borderRadius: "8.921px",
-                boxShadow: "0px 3.375375986099243px 5.063063621520996px 0px rgba(65, 59, 137, 0.10)",
-            }}
+        <div
+            className="flex-shrink-0 flex flex-col p-5 gap-2 border border-solid border-CECECE rounded-[9px] shadow-6 max-desktop:p-3"
         >
-            <span style={{
-                ...typographySubtitle,
-                color: "var(--primary-blue, #413B89)",
-                fontSize: "16px",
-                letterSpacing: "0.118px",
-            }}>IIT  HYDERABAD</span>
+            <span
+                className="text-413B89 text-16 font-500 font-Outfit leading-normal not-italic lining-nums proportional-nums tracking-[0.118px]"
+            >
+                IIT  HYDERABAD
+            </span>
             <div className="flex justify-between items-center mr-8">
-                <span style={{ ...typographyTitle, fontWeight: 500, fontSize: "16x" }}>
+                <span
+                    className="text-16 font-500 text-34-34-34 font-Outfit leading-normal not-italic">
                     (2010-2014)
                 </span>
-                <span style={{ ...typographyTitle, fontWeight: 500, fontSize: "16x" }}>
+                <span
+                    className="text-16 font-500 text-34-34-34 font-Outfit leading-normal not-italic"
+                >
                     Btech
                 </span>
             </div>
-            <span style={{ ...typographySubtitle, fontSize: "16px" }}>Lorem ipsum dolor sit amet consectetur. Erat auctor a aliquam vel congue luctus. Leo diam cras neque mauris ac arcu elit ipsum dolor sit amet consectetur.</span>
+            <span className="text-16 text-73-69-79 font-500 font-Outfit leading-normal not-italic lining-nums proportional-nums text-justify"
+            >
+                Lorem ipsum dolor sit amet consectetur. Erat auctor a aliquam vel congue luctus. Leo diam cras neque mauris ac arcu elit ipsum dolor sit amet consectetur.
+            </span>
         </div>
     );
 }
 
 export default function UserEducation() {
     return (
-        <section className="flex flex-col gap-4 p-4">
+        <section className="flex flex-col gap-4 p-4 max-desktop:p-2 max-desktop:gap-2">
             <TitleWithButton title="Education" buttonText="Edit" />
             <EducationTile />
         </section>
