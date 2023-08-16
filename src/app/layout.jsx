@@ -1,12 +1,6 @@
-'use client'
 import './globals.css'
 import { Inter } from 'next/font/google'
-
-import { usePathname, useRouter } from "next/navigation";
-import { getUserData } from "@/utils/http-service";
-import { UserContext } from '@/context/userContext';
-import { useState, useEffect } from "react";
-
+import { StateProvider } from "@/context/userContext"
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -15,33 +9,12 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
-  const [userData, setUserData] = useState({});
-  const pathname = usePathname();
-  const router = useRouter();
-
-  useEffect(() => {
-    console.log("[userData]: ", userData)
-  }, [userData]);
-
-  useEffect(() => {
-    getUserData().then((res) => {
-      if (res?.status === 200)
-        setUserData(res?.data);
-      else {
-        console.log("[server]: ", res?.data)
-        if (pathname === "/login" || pathname === "/signup") return;
-        router.push("/login");
-      }
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <html lang="en">
       <body className={inter.className}>
-        <UserContext.Provider value={{ userData, setUserData }}>
+        <StateProvider>
           {children}
-        </UserContext.Provider>
+        </StateProvider>
       </body>
     </html>
   )
