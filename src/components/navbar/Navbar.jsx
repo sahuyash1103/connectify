@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { UserContext } from "@/context/userContext";
 
 export default function Navbar({ setOpenSidebar }) {
-  const { userData, _ } = useContext(UserContext);
+  const { userData } = useContext(UserContext);
 
   return (
     <header

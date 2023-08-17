@@ -13,16 +13,18 @@ export default function Connections() {
 
     useEffect(() => {
         getUserConnectionsData().then((res) => {
-            if (res?.status === 200)
+            if (res?.status === 200) {
                 setUserConnections(res?.data);
+            }
             else {
                 console.log("[server]: ", res?.data)
                 router.push("/login");
             }
         });
         getAllConnectionsData().then((res) => {
-            if (res?.status === 200)
+            if (res?.status === 200) {
                 setAllConnections(res?.data);
+            }
             else {
                 console.log("[server]: ", res?.data)
                 router.push("/login");
@@ -41,7 +43,7 @@ export default function Connections() {
                 </div>
                 <div className="flex flex-col p-2 justify-start items-start w-full">
                     <ConnectionsList
-                        userConnection
+                        isConnected
                         userConnections={userConnections}
                         allConnections={allConnections}
                         setUserConnections={setUserConnections}

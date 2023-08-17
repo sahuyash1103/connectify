@@ -5,58 +5,69 @@ import { useEffect, useState } from "react";
 import { UserContext } from "@/context/userContext";
 import { useContext } from "react";
 
-export default function ConnectionsList({ userConnections, allConnections, setUserConnections, userConnection }) {
-    const { userData, _ } = useContext(UserContext);
-    const [myConnections, setMyConnections] = useState([]);
+export default function ConnectionsList({ userConnections, allConnections, setUserConnections, isConnected }) {
+    const { userData } = useContext(UserContext);
+    const [connections, setConnections] = useState([]);
 
-    const disconnectToUser = async (email) => {
+    const disconnectToUser = async (email, setLoading) => {
+        setLoading(true);
+
         const res = await disconnectToUserPutReq(email);
         if (res?.status === 200) {
+            setLoading(false);
             setUserConnections(res?.data);
         }
-        else
+        else {
+            setLoading(false);
             console.log("[server]: ", res?.data);
+        }
     }
 
-    const connectToUser = async (email) => {
+    const connectToUser = async (email, setLoading) => {
+        setLoading(true);
+        // setUserConnections([...userConnections, email]);
+
         const res = await connectToUserPutReq(email);
         if (res?.status === 200) {
+            setLoading(false);
             setUserConnections(res?.data);
         }
-        else
+        else {
+            setLoading(false);
             console.log("[server]: ", res?.data);
+        }
     }
 
     useEffect(() => {
         let result = allConnections.filter((connection) => {
             if (connection?.email === userData?.email) return false;
 
-            if (userConnection) {
+            if (isConnected) {
                 return userConnections.includes(connection?.email)
             }
             else {
                 return !userConnections.includes(connection?.email);
             }
         });
-        setMyConnections(result);
-    }, [allConnections, userConnections, userConnection, userData]);
+        setConnections(result);
+    }, [allConnections, userConnections, isConnected, userData]);
 
     return (
-        <section className="flex flex-wrap justify-start items-start overflow-x-hidden overflow-y-scroll gap-4 p-2 w-full h-[50vh] max-desktop:gap-3 max-desktop:p-1 max-laptop:gap-2 max-[900px]:p-0">
+        <section className="flex flex-wrap justify-start items-start overflow-x-hidden overflow-y-scroll gap-4 p-2 w-full h-[35vh] max-[900px]:h-[35vh] max-desktop:gap-3 max-desktop:p-1 max-laptop:gap-2 max-[900px]:p-0">
             {
-                myConnections?.length > 0 ?
-                    myConnections?.map((connection, index) => {
+                connections?.length > 0 ?
+                    connections?.map((connection, index) => {
                         return <ConnectionCard
-                            key={index}
+                            key={connection?.email}
                             name={connection?.name}
                             job="Full stack developer"
                             company="Oruphones"
-                            onClick={() => {
-                                userConnection ?
-                                    disconnectToUser(connection?.email) :
-                                    connectToUser(connection?.email)
+                            onClick={(setLoading) => {
+                                isConnected ?
+                                    disconnectToUser(connection?.email, setLoading) :
+                                    connectToUser(connection?.email, setLoading)
                             }}
-                            isConnected={userConnection}
+                            isConnected={isConnected}
                         />
                     })
                     :

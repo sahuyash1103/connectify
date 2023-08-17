@@ -11,9 +11,9 @@ export default function Sidebar({ openSidebar, setOpenSidebar }) {
 
     const onLogout = (e) => {
         e.preventDefault();
+        router.push("/login");
         removeAuthCookie();
         setUserData({});
-        router.push("/login");
     }
 
     return (

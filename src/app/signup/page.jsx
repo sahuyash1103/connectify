@@ -12,7 +12,8 @@ import { UserContext } from "@/context/userContext";
 import Head from "next/head";
 
 export default function Signup() {
-    const { _, setUserData } = useContext(UserContext);
+    const { setUserData } = useContext(UserContext);
+    const [isLoading, setIsLoading] = useState(false);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
@@ -25,6 +26,7 @@ export default function Signup() {
 
     const onSignup = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
         const signupData = {
             name,
             email,
@@ -35,19 +37,24 @@ export default function Signup() {
         const error = await validateSigupData(signupData);
         if (error) {
             console.log("[validator]: ", error);
+            setIsLoading(false);
             return;
         }
         if (password !== confirmPassword) {
             console.log("passwords don't match: ", password, confirmPassword);
+            setIsLoading(false);
             return;
         }
         const res = await registerUser(signupData);
         if (res?.status === 200) {
             setUserData(res?.data);
+            setIsLoading(false);
             router.push("/");
         }
-        else
+        else {
+            setIsLoading(false);
             console.log("[server]: ", res?.data);
+        }
     };
 
     return (
@@ -101,15 +108,16 @@ export default function Signup() {
                         className="py-3 rounded-lg w-96 text-1E2875 text-24 font-600 font-Outfit leading-normal not-italic bg-F0EFFA max-laptop:w-[300px] max-laptop:text-20 max-laptop:m-2 max-[500px]:w-[200px]"
                         onClick={onSignup}
                     >
-                        Signup
+                        {isLoading ? 'Loading...' : 'Signup'}
                     </button>
                 </div>
 
-                <div className="flex gap-3 text-center items-center hover:underline text-34-34-34 text-18 font-500 font-Outfit leading-normal not-italic max-[900px]:text-14">
+                <div className="flex gap-3 text-center items-center text-34-34-34 text-18 font-500 font-Outfit leading-normal not-italic max-[900px]:text-14">
                     Already have account?
 
                     <Link
                         href="/login"
+                        className="hover:underline"
                     >
                         Login
                     </Link>

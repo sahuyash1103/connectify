@@ -34,6 +34,7 @@ export default function Home() {
   const handleSave = async (field) => {
     if (field === 'email') {
       console.log("email cannot be changed");
+      alert("email cannot be changed");
       return;
     }
     const getFieldData = (field) => {

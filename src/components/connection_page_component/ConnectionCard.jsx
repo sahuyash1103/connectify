@@ -1,7 +1,15 @@
+'use client'
 import { Ellipse255Icon } from "@/svgs";
 import CustomButton from "../CustomButton";
+import { useState } from "react";
 
 export default function ConnectionCard({ name, job, company, isConnected, onClick }) {
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        onClick(setIsLoading);
+    }
     return (
         <div className="flex flex-shrink-0 gap-2 p-2 justify-between px-6 items-center w-[320px] h-[150px] border border-solid rounded-md shadow-2 border-0-0-0 max-desktop:px-2 max-desktop:gap-1 max-laptop:px-2 max-laptop:py-1 max-laptop:gap-0 max-desktop:w-[260px] max-desktop:h-[130px] max-laptop:w-[240px] max-laptop:h-[120px] max-[800px]:w-[200px] max-[800px]:h-[105px] max-[450px]:w-[180px] max-[450px]:h-[85px] max-[400px]:w-[170px]" >
             <div className="flex flex-col gap-3 justify-center max-[800px]:gap-2 max-[450px]:gap-1">
@@ -24,14 +32,14 @@ export default function ConnectionCard({ name, job, company, isConnected, onClic
                         <CustomButton
                             className="!bg-BAB6EB max-desktop:text-12 max-laptop:text-12 max-[800px]:text-10 max-[450px]:text-[9px]"
                             color="#BAB6EB"
-                            text="Remove Connection"
-                            onClick={onClick} />
+                            text={isLoading ? "Loading..." : "Remove Connection"}
+                            onClick={handleClick} />
                         :
                         <CustomButton
                             className="!bg-BAB6EB max-desktop:text-12 max-laptop:text-12 max-[800px]:text-10 max-[450px]:text-[9px]"
                             color="#BAB6EB"
-                            text="Connect"
-                            onClick={onClick} />
+                            text={isLoading ? "Loading..." : "Connect"}
+                            onClick={handleClick} />
                 }
             </div>
             <Ellipse255Icon className="flex-shrink-0 w-[97px] rounded-[50%] shadow-3 border border-solid border-F8F8FF max-desktop:w-[90px] max-laptop:w-[80px] max-[800px]:w-[65px] max-[450px]:w-[50px]" />
