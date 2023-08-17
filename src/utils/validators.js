@@ -1,5 +1,7 @@
 import { object, string, array, number } from "yup";
 
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
 export const validateSigupData = async (data) => {
   const maxYear = new Date().getFullYear();
 
@@ -7,7 +9,11 @@ export const validateSigupData = async (data) => {
     name: string().min(3).max(50).required(),
     email: string().min(10).max(255).required().email(),
     password: string().min(8).max(255).required(),
-    phone: number().min(10).max(10).required(),
+    phone: string()
+      .required("required")
+      .matches(phoneRegExp, 'Phone number is not valid')
+      .min(10, "too short")
+      .max(10, "too long").required(),
     about: string().max(255).nullable(),
     skills: array().of(string().min(3).max(10)).nullable(),
     education: array()
@@ -49,7 +55,11 @@ export const validateUserUpdateData = async (dataToUpdate) => {
     name: string().min(3).max(50),
     email: string().min(10).max(255).email(),
     password: string().min(8).max(255),
-    phone: number().min(10).max(10),
+    phone: string()
+      .required("required")
+      .matches(phoneRegExp, 'Phone number is not valid')
+      .min(10, "too short")
+      .max(10, "too long"),
     skills: array().of(string().min(3).max(10)),
     about: string().max(255),
     education: array().of(
