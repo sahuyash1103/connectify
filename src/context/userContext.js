@@ -4,6 +4,7 @@ import { createContext } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { getUserData } from "@/utils/http-service";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 export const UserContext = createContext({});
 
@@ -17,6 +18,7 @@ export const StateProvider = ({ children }) => {
       if (res?.status === 200) setUserData(res?.data);
       else {
         console.log("[server]: ", res?.data);
+        toast("[server]: " + res?.data, { hideProgressBar: true, autoClose: 2000, type: 'error' });
         if (pathname === "/login" || pathname === "/signup") return;
         router.push("/login");
       }

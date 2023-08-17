@@ -9,6 +9,7 @@ import { validateLoginData } from "@/utils/validators";
 import { verifyUser } from "@/utils/http-service";
 import { UserContext } from "@/context/userContext";
 import Head from "next/head";
+import { toast } from "react-toastify";
 
 export default function Login() {
     const { setUserData } = useContext(UserContext);
@@ -29,6 +30,7 @@ export default function Login() {
         const error = await validateLoginData(loginData);
         if (error) {
             console.log("[validator]: ", error);
+            toast("[validator]: " + error, toast("[server]: " + res?.data, { hideProgressBar: true, autoClose: 2000, type: 'error' }));
             setIsLoading(false);
             return;
         }
@@ -41,6 +43,7 @@ export default function Login() {
         else {
             setIsLoading(false);
             console.log("[server]: ", res?.data);
+            toast("[server]: " + res?.data, { hideProgressBar: true, autoClose: 2000, type: 'error' });
         }
     }
 

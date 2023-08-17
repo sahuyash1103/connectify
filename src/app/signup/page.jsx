@@ -10,6 +10,7 @@ import { validateSigupData } from "@/utils/validators";
 import { registerUser } from "@/utils/http-service";
 import { UserContext } from "@/context/userContext";
 import Head from "next/head";
+import { toast } from "react-toastify";
 
 export default function Signup() {
     const { setUserData } = useContext(UserContext);
@@ -36,13 +37,15 @@ export default function Signup() {
         };
         const error = await validateSigupData(signupData);
         if (error) {
-            console.log("[validator]: ", error);
             setIsLoading(false);
+            console.log("[validator]: ", error);
+            toast("[validator]: " + error, { hideProgressBar: true, autoClose: 2000, type: 'error' });
             return;
         }
         if (password !== confirmPassword) {
-            console.log("passwords don't match: ", password, confirmPassword);
             setIsLoading(false);
+            console.log("passwords don't match: ");
+            toast("passwords don't match: ", { hideProgressBar: true, autoClose: 2000, type: 'error' });
             return;
         }
         const res = await registerUser(signupData);
@@ -54,6 +57,7 @@ export default function Signup() {
         else {
             setIsLoading(false);
             console.log("[server]: ", res?.data);
+            toast("[server]: " + res?.data, { hideProgressBar: true, autoClose: 2000, type: 'error' });
         }
     };
 

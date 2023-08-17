@@ -13,6 +13,7 @@ import { updateUserData } from "@/utils/http-service";
 import { validateUserUpdateData } from "@/utils/validators";
 import { UserContext } from "@/context/userContext";
 import { setUser } from "@/utils/cookies";
+import { toast } from "react-toastify";
 
 export default function Home() {
   const { userData, setUserData } = useContext(UserContext);
@@ -34,7 +35,7 @@ export default function Home() {
   const handleSave = async (field) => {
     if (field === 'email') {
       console.log("email cannot be changed");
-      alert("email cannot be changed");
+      toast("email cannot be changed", { hideProgressBar: true, autoClose: 2000, type: 'warning' });
       return;
     }
     const getFieldData = (field) => {
@@ -50,6 +51,7 @@ export default function Home() {
     if (error) {
       setPageState();
       console.log("[validator]: ", error)
+      toast("[validator]: " + error, { hideProgressBar: true, autoClose: 2000, type: 'error' })
       return;
     };
 
@@ -64,12 +66,13 @@ export default function Home() {
     else {
       setPageState();
       console.log("[server]: ", res?.data);
+      toast("[server]: " + res?.data, { hideProgressBar: true, autoClose: 2000, type: 'error' });
     };
   }
 
   return (
     <ProtectedRouteLayout >
-     
+
       <main className="relative flex-shrink-0 w-95/ p-2 m-2 max-[1900px]:w-full">
         <div className="p-2 w-full h-44 border border-solid border-white rounded-lg bg-1E2875">
           <span className="m-2 p-2 text-FFF text-18 font-500 font-Outfit leading-normal" >

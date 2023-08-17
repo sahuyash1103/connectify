@@ -4,6 +4,7 @@ import { disconnectToUserPutReq, connectToUserPutReq } from "@/utils/http-servic
 import { useEffect, useState } from "react";
 import { UserContext } from "@/context/userContext";
 import { useContext } from "react";
+import { toast } from "react-toastify";
 
 export default function ConnectionsList({ userConnections, allConnections, setUserConnections, isConnected }) {
     const { userData } = useContext(UserContext);
@@ -20,6 +21,7 @@ export default function ConnectionsList({ userConnections, allConnections, setUs
         else {
             setLoading(false);
             console.log("[server]: ", res?.data);
+            toast("[server]: " + res?.data, { hideProgressBar: true, autoClose: 2000, type: 'error' });
         }
     }
 
@@ -35,6 +37,7 @@ export default function ConnectionsList({ userConnections, allConnections, setUs
         else {
             setLoading(false);
             console.log("[server]: ", res?.data);
+            toast("[server]: " + res?.data, { hideProgressBar: true, autoClose: 2000, type: 'error' });
         }
     }
 

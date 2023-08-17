@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { getUserConnectionsData, getAllConnectionsData } from "@/utils/http-service";
 import ConnectionsList from "@/components/connection_page_component/ConnectionsList";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function Connections() {
     const [userConnections, setUserConnections] = useState([]);
@@ -18,6 +19,7 @@ export default function Connections() {
             }
             else {
                 console.log("[server]: ", res?.data)
+                toast("[server]: " + res?.data, { hideProgressBar: true, autoClose: 2000, type: 'error' })
                 router.push("/login");
             }
         });
@@ -27,6 +29,7 @@ export default function Connections() {
             }
             else {
                 console.log("[server]: ", res?.data)
+                toast("[server]: " + res?.data, { hideProgressBar: true, autoClose: 2000, type: 'error' })
                 router.push("/login");
             }
         });

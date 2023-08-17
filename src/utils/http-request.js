@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 const apiURL = process.env.NEXT_PUBLIC_CONNECTIFY_API_URL;
 export default async function httpRequest(path, methode, { headers, body }) {
   try {
@@ -23,5 +25,6 @@ export default async function httpRequest(path, methode, { headers, body }) {
     return { data: text, status: res?.status, headers: res?.headers };
   } catch (e) {
     console.log("[server error]: ", e);
+    toast("[server error]: " + e, { hideProgressBar: true, autoClose: 2000, type: 'error' });
   }
 }

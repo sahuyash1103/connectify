@@ -1,6 +1,8 @@
 import './globals.css'
+import 'react-toastify/dist/ReactToastify.css';
 import { Inter } from 'next/font/google'
 import { StateProvider } from "@/context/userContext"
+import { ToastContainer } from 'react-toastify'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -14,6 +16,7 @@ export default function RootLayout({ children }) {
 
       <body className={inter.className}>
         <StateProvider>
+          <ToastContainer />
           {children}
         </StateProvider>
       </body>
